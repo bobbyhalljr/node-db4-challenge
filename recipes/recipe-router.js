@@ -15,3 +15,17 @@ router.get('/', (req, res) => {
         })
     })
 })
+
+router.get('/shopping-list', (req, res) => {
+    Recipes.getShoppingList()
+    .then(list => {
+        res.status(200).json(list)
+    })
+    .catch(err => {
+        res.status(500).json({
+            errorMessage: 'There was a problem getting the shopping list.', err
+        })
+    })
+})
+
+module.exports = router;
